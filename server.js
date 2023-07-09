@@ -1,7 +1,7 @@
 const API_KEY = "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";
 
 async function fetchData() {
-  const response = await fetch("https://promptai-lime.vercel.app/api/proxy", {
+  const response = await fetch("https://api.openai.com/v1/completions", {
     method: "POST",
     headers: {
       Authorization: `Bearer ${API_KEY}`,
