@@ -1,18 +1,20 @@
-const express = require('express');
-const request = require('request');
-const cors = require('cors');
+const API_KEY = "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"
 
-const app = express();
-app.use(cors());
+async function fetchData() {      
+   const response = await fetch("https://api.openai.com/v1/completions", {
+     method: "POST",
+     headers: {
+         Authorization: 'Bearer ${API_KEY}',
+         "Content-Type": "application/json"
+     },
+     body: JSON.stringfy({
+       mode: "text-davinci-003"
+       prompt: "hellow,how are you today?"
+       max_token: 50
+     })
+   })
+  const date = await response.json()
+  console.log(data)
+}         
 
-const targetUrl = 'https://api.openai.com';
-
-app.all('/*', (req, res) => {
-  const url = targetUrl + req.url;
-  req.pipe(request({ url, qs: req.query })).pipe(res);
-});
-
-const port = process.env.PORT || 3000;
-app.listen(port, () => {
-  console.log(`Proxy server is running on port ${port}`);
-});
+fetchData()
